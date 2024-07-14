@@ -40,7 +40,11 @@ public class AuthorService {
         if (!authorRepository.existsById(id)) {
             throw new InvalidAuthorException(String.format("Author with id [%s] does not exist", id));
         }
-        authorRepository.getReferenceById(id).setName(newName);
+        Optional<Author> author = authorRepository.findById(id);
+        author.ifPresent(existing -> {
+            existing.setName(newName);
+            authorRepository.save(existing);
+        });
         return String.format("Successfully updated author: [%s]", authorRepository.getReferenceById(id));
     }
 
@@ -48,7 +52,11 @@ public class AuthorService {
         if (!authorRepository.existsById(id)) {
             throw new InvalidAuthorException(String.format("Author with id [%s] does not exist", id));
         }
-        authorRepository.getReferenceById(id).setBio(newBio);
+        Optional<Author> author = authorRepository.findById(id);
+        author.ifPresent(existing -> {
+            existing.setBio(newBio);
+            authorRepository.save(existing);
+        });
         return String.format("Successfully updated author: [%s]", authorRepository.getReferenceById(id));
     }
 
