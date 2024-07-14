@@ -31,3 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+htmlReport/index.html
+htmlReport/css/coverage.css
+htmlReport/css/idea.min.css
+htmlReport/img/arrowDown.gif
+htmlReport/img/arrowUp.gif
+htmlReport/js/highlight.min.js
+htmlReport/js/highlightjs-line-numbers.min.js

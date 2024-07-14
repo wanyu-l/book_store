@@ -2,6 +2,8 @@ package com.book_store.demo.beans;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "Authors")
 public class Author {
@@ -35,6 +37,19 @@ public class Author {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Author author = (Author) o;
+        return Objects.equals(id, author.id) && Objects.equals(name, author.name) && Objects.equals(bio, author.bio);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, bio);
     }
 
     @Override
